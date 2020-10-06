@@ -48,6 +48,17 @@ document.addEventListener('DOMContentLoaded', () => {
             
         }
     }
+    
+    function movePlatforms() {
+        // only move if doodler is in start position
+        if (doodlerBottomSpace > 200) {
+            platforms.forEach(platform => {
+                // for each platform inside the platforms array
+                platform.bottom -= 4 // moving its bottom down the screen
+                let visual = platform.visual
+                visual.style.bottom = platform.bottom + 'px'
+        })
+    }
 
     function start() {
         // doodler appears if this function is invoked
@@ -55,6 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isGameOver) {
             createDoodler()
             createPlatforms()
+            setInterval(movePlatforms, 30) // set interval allows invoking the function and time to keep invoking
         }
     }
     // attach to button so it doesn't just start immediately
